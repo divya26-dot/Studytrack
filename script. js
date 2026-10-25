@@ -1,0 +1,37 @@
+function addTask() {
+    const input = document.getElementById("task");
+    const taskText = input.value.trim();
+
+    if (taskText === "") {
+        alert("Please enter a study task!");
+        return;
+    }
+
+    const taskList = document.getElementById("tasks");
+
+    const li = document.createElement("li");
+    li.textContent = taskText + " ";
+
+    const completeButton = document.createElement("button");
+    completeButton.textContent = "Done";
+
+    completeButton.onclick = function () {
+        li.style.textDecoration = "line-through";
+        li.style.opacity = "0.5";
+        completeButton.disabled = true;
+    };
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.style.marginLeft = "8px";
+
+    deleteButton.onclick = function () {
+        li.remove();
+    };
+
+    li.appendChild(completeButton);
+    li.appendChild(deleteButton);
+
+    taskList.appendChild(li);
+    input.value = "";
+}
